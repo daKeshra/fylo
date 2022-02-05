@@ -327,11 +327,12 @@ header a:hover {
 
 .success {
   font-size: 12px;
-  color: rgb(81, 192, 81);
+  color: rgb(120, 237, 120);
   font-size: Raleway, "Open Sans";
   text-align: left;
   margin-left: 170px;
 }
+
 footer {
   background: hsl(216, 53%, 9%);
   /* width: 100%; */

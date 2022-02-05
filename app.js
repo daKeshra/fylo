@@ -1,35 +1,25 @@
-const errorDiv = document.getElementsByClassName("error");
+const errorDiv = document.querySelector(".error");
 const submitBtn = document.getElementById("submitBtn");
 const inputEmail = document.getElementById("email");
 const form = document.getElementById("form");
 
-submitBtn.addEventListener("submit", (e) => {
+form.addEventListener("submit", (e) => {
   e.preventDefault();
 
   validateInput();
 });
 
-//Error
-const setError = (element, message) => {
-  const inputControl = element.parentElement;
-  const errorDiv = document.querySelector(".error");
+// submitBtn.addEventListener("click", functionClick());
 
-  errorDiv.innerText = message;
-  inputControl.classList.add("error");
-  inputControl.classList.remove("success");
-};
+// function functionClick() {
 
-//Success
-const setSuccess = (element) => {
-  const inputControl = element.parentElement;
-  const errorDiv = document.querySelector(".error");
+//   if (submitBtn) {
+//     submitBtn.style.transform = "scale(1.1)";
+//   } else {
+//     submitBtn.style.transform = "scale(1.0)";
+//   }
+// }
 
-  errorDiv, (innerText = "");
-  inputControl.classList.remove("error");
-  inputControl.classList.add("success");
-};
-
-//Validating email
 const isValidEmail = (inputEmail) => {
   const re =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -37,14 +27,21 @@ const isValidEmail = (inputEmail) => {
 };
 
 const validateInput = () => {
-  const errorDiv = document.getElementsByClassName("error");
-  const inputEmailValue = document.getElementById("email").value.trim();
+  const inputEmailValue = inputEmail.value.trim();
 
   if (inputEmailValue === "") {
-    setError(errorDiv, "Enter your email");
+    errorDiv.innerHTML = "error";
   } else if (!isValidEmail(inputEmailValue)) {
-    setError(inputEmail, "email not valid");
+    errorDiv.innerHTML = "error";
+    errorDiv.style.color = "rgb(226, 109, 109)";
+
+    inputEmail.value = "";
+    inputEmail.focus();
+  } else if (isValidEmail(inputEmailValue)) {
+    errorDiv.innerHTML = "success";
+    errorDiv.style.color = "rgb(120, 237, 120)";
   } else {
-    setSuccess();
+    errorDiv.innerHTML = "success";
+    errorDiv.style.color = "rgb(120, 237, 120)";
   }
 };
